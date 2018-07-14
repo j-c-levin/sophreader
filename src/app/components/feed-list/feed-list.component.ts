@@ -10,7 +10,7 @@ export class FeedListComponent implements OnInit {
 
   @Input() feeds: any;
 
-  constructor(private _sanitizer: DomSanitizer) { }
+  constructor() { }
 
   ngOnInit() {
   }
