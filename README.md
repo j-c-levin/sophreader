@@ -1,0 +1,2 @@
+# sophreader
+An RSS reader
