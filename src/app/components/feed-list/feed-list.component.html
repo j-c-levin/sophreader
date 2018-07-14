@@ -1,0 +1,12 @@
+<div *ngFor="let feed of feeds">
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{feed.title}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div [innerHTML]="feed.description"></div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
