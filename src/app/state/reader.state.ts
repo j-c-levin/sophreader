@@ -1,4 +1,4 @@
-import { State, Action, StateContext, Selector } from '@ngxs/store';
+import { State, Selector } from '@ngxs/store';
 
 export class ReaderStateModel {
     feeds: any[];
