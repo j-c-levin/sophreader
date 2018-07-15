@@ -11,6 +11,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { MatExpansionModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeedRetrieverService } from '@services/feed-retriever.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatExpansionModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [FeedRetrieverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { ReaderState } from '../../state/reader.state';
 import { Observable } from '@node_modules/rxjs';
+import { UpdateFeeds } from '../../actions/reader.actions';
 
 @Component({
   selector: 'app-reader',
@@ -15,6 +16,7 @@ export class ReaderComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit() {
+    this.store.dispatch(new UpdateFeeds());
   }
 
 }
