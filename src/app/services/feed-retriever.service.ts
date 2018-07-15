@@ -1,6 +1,8 @@
 // tslint:disable:max-line-length
 import { Injectable } from '@angular/core';
 import { of, Observable } from '@node_modules/rxjs';
+import levelup from 'levelup';
+import leveljs from 'level-js';
 
 @Injectable({
   providedIn: 'root'
@@ -781,5 +783,12 @@ export class FeedRetrieverService {
           'creator': 'Jason Schreier'
         }
       ]);
+  }
+
+  async getOrUpdateCache(): Promise<Observable<any>> {
+    const db = levelup(leveljs('bigdata'));
+    await db.put('hello', Buffer.from('world'));
+    const value = await db.get('hello');
+    return of();
   }
 }
