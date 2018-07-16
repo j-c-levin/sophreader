@@ -1,5 +1,3 @@
-export class ReadFeed {
-    static readonly type = '[Reader] read';
-
-    constructor(public payload: any) { }
+export class UpdateFeeds {
+    static readonly type = '[Reader] update feeds';
 }
