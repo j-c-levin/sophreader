@@ -25,8 +25,8 @@
     "@ngx-pwa/local-storage": "^6.0.0-rc.1",
     "@ngxs/store": "^3.1.4",
     "core-js": "^2.5.4",
+    "fast-xml-parser": "^3.11.1",
     "rxjs": "^6.0.0",
-    "xml-js": "^1.6.7",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
