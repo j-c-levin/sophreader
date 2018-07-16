@@ -786,9 +786,9 @@ export class FeedRetrieverService {
   }
 
   async getOrUpdateCache(): Promise<Observable<any>> {
-    const db = levelup(leveljs('bigdata'));
-    await db.put('hello', Buffer.from('world'));
-    const value = await db.get('hello');
+    const db = levelup(leveljs('./sophreader'));
+    // await db.put('hello', Buffer.from('world'));
+    // const value = await db.get('hello');
     return of();
   }
 }
