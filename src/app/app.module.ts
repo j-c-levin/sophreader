@@ -12,6 +12,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { MatExpansionModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedRetrieverService } from '@services/feed-retriever.service';
+import { HttpModule } from 'node_modules/@angular/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FeedRetrieverService } from '@services/feed-retriever.service';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     MatExpansionModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpModule
   ],
   providers: [FeedRetrieverService],
   bootstrap: [AppComponent]
