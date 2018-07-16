@@ -1,18 +1,21 @@
 // tslint:disable:max-line-length
 import { Injectable } from '@angular/core';
 import { of, Observable } from '@node_modules/rxjs';
-import levelup from 'levelup';
-import leveljs from 'level-js';
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeedRetrieverService {
 
-  constructor() { }
+  constructor(protected localStorage: LocalStorage) { }
 
   getFeeds(): Observable<any> {
-    return of(
+    return this.localStorage.getItem('feeds');
+  }
+
+  UpdateCache(): Observable<any> {
+    return this.localStorage.setItem('feeds',
       [
         {
           'title': 'Shop Contest: Create More Fortnite Mysteries, Winners!',
@@ -782,13 +785,7 @@ export class FeedRetrieverService {
           },
           'creator': 'Jason Schreier'
         }
-      ]);
-  }
-
-  async getOrUpdateCache(): Promise<Observable<any>> {
-    const db = levelup(leveljs('./sophreader'));
-    // await db.put('hello', Buffer.from('world'));
-    // const value = await db.get('hello');
-    return of();
+      ]
+    );
   }
 }

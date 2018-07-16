@@ -1,6 +1,7 @@
 import { State, Selector, Action, StateContext } from '@ngxs/store';
 import { UpdateFeeds } from '../actions/reader.actions';
 import { FeedRetrieverService } from '../services/feed-retriever.service';
+import { switchMap } from 'rxjs/operators';
 
 export class ReaderStateModel {
     feeds: any[];
@@ -21,8 +22,10 @@ export class ReaderState {
 
     @Action(UpdateFeeds)
     updateFeeds(ctx: StateContext<ReaderStateModel>): void {
-        this.feedRetrieverService
-            .getFeeds()
+        this.feedRetrieverService.UpdateCache()
+            .pipe(
+                switchMap(() => this.feedRetrieverService.getFeeds())
+            )
             .subscribe((feeds) => {
                 const state = ctx.getState();
                 ctx.setState({
