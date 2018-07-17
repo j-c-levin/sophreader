@@ -12,4 +12,4 @@ ID = "nervous-gates-d9c781"
   # This will be your default build command
   command = "yarn run build"
   # This is where we will look for your lambda functions
-  functions = "functions-dist/"
+  functions = "functions-dist"
