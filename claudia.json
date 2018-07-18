@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "sophreader-executor",
+    "name": "sophreader",
+    "region": "eu-west-1"
+  }
+}

@@ -1,7 +1,6 @@
-exports.handler = function (event, context, callback) {
-    require('./help');
-    // request.get(event.queryStringParameters)
-    //     .end((err, res) => {
-    //         console.log(res);
-    //     });
+import { get } from 'superagent';
+
+exports.handler = function (event, context) {
+    get(event.queryStringParams.feedUrl).
+    context.succeed('hello world');
 };
