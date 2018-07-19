@@ -1,10 +1,10 @@
 {
   "lambda": {
-    "role": "functions-executor",
-    "name": "functions",
+    "role": "sophreader-feed-retriever-executor",
+    "name": "sophreader-feed-retriever",
     "region": "eu-west-1"
   },
   "api": {
-    "id": "do3vae0p40"
+    "id": "gl3jmhect5"
   }
 }

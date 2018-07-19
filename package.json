@@ -5,7 +5,9 @@
     "ng": "ng",
     "develop": "npm-run-all --parallel start start:functions",
     "start": "ng serve",
+    "deploy": "npm-run-all build functions:update",
     "build": "ng build --prod",
+    "functions:update": "cd functions && yarn && yarn run claudia:update",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

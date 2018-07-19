@@ -1,10 +1,11 @@
 {
-  "name": "functions",
+  "name": "sophreader-feed-retriever",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "claudia:create": "claudia create --region eu-west-1 --deploy-proxy-api --timeout 10 --handler dist/feedRetriever.handler"
+    "claudia:create": "claudia create --region eu-west-1 --deploy-proxy-api --timeout 10 --handler dist/feedRetriever.handler",
+    "claudia:update": "claudia update"
   },
   "files": [
     "dist"
