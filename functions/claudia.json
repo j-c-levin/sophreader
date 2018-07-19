@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "functions-executor",
+    "name": "functions",
+    "region": "eu-west-1"
+  },
+  "api": {
+    "id": "do3vae0p40"
+  }
+}
