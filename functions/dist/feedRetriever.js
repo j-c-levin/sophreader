@@ -5,7 +5,7 @@ exports.handler = async function (event, context, callback) {
     context.succeed({
         statusCode: 200,
         headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:4200'
+            'Access-Control-Allow-Origin': 'http://localhost:4200, https://sophreader.netlify.com'
         },
         body: JSON.stringify(feed)
     });
