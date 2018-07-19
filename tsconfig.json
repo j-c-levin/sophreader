@@ -18,7 +18,8 @@
     ],
     "paths": {
       "@node_modules/*": ["node_modules/*"],
-      "@services/*": ["src/app/services/*"]
+      "@services/*": ["src/app/services/*"],
+      "@environments/*": ["src/environments/*"]
     }
   }
 }
