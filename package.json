@@ -5,7 +5,9 @@
     "ng": "ng",
     "develop": "npm-run-all --parallel start start:functions",
     "start": "ng serve",
+    "deploy": "npm-run-all build functions:update",
     "build": "ng build --prod",
+    "functions:update": "cd functions && yarn && yarn run claudia:update",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -43,7 +45,6 @@
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
-    "claudia": "^5.0.1",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",

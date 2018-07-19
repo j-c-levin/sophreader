@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "sophreader-feed-retriever-executor",
+    "name": "sophreader-feed-retriever",
+    "region": "eu-west-1"
+  },
+  "api": {
+    "id": "gl3jmhect5"
+  }
+}
