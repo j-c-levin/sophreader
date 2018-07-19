@@ -20,7 +20,7 @@ export class FeedRetrieverService {
   }
 
   GetNewFeeds(feedUrl: string): Observable<any> {
-    const url = 'https://z6iviixt89.execute-api.eu-west-1.amazonaws.com/latest';
+    const url = 'https://gl3jmhect5.execute-api.eu-west-1.amazonaws.com/latest';
     return this.http.get(url,
       {
         params: {
