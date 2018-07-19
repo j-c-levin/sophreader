@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from '@node_modules/rxjs';
 import { LocalStorage } from '@ngx-pwa/local-storage';
-import * as fastXmlParser from 'fast-xml-parser';
 import { Http } from '@angular/http';
 import { switchMap, map, tap } from '@node_modules/rxjs/operators';
-import { environment } from '@environments/environment';
+import { CdkColumnDefBase } from '../../../node_modules/@angular/cdk/table';
 
 @Injectable({
   providedIn: 'root'
@@ -16,24 +15,23 @@ export class FeedRetrieverService {
     private http: Http
   ) { }
 
-  getFeeds(): Observable<any> {
-    return this.localStorage.getItem('feeds');
+  getFeeds(feedUrl: string): Observable<any> {
+    return this.localStorage.getItem(feedUrl);
   }
 
-  UpdateCache(): Observable<any> {
+  GetNewFeeds(feedUrl: string): Observable<any> {
     const url = 'https://z6iviixt89.execute-api.eu-west-1.amazonaws.com/latest';
     return this.http.get(url,
       {
         params: {
-          feedUrl: 'https://kotaku.com/rss'
+          feedUrl
         }
       }
     ).pipe(
       map(data => data.json()),
-      switchMap((feedData) => {
-        const jsonFeed = fastXmlParser.parse(feedData).rss.channel.item;
-        return this.localStorage.setItem('feeds', jsonFeed);
-      })
+      map(data => data.items),
+      switchMap(items => this.localStorage.setItem(feedUrl, items)),
+      switchMap(() => this.getFeeds(feedUrl))
     );
   }
 }

@@ -1,0 +1,9 @@
+:host {
+    font-size: 10px;
+}
+
+button {
+    margin: 10px auto;
+    display: block;
+    font-size: 1rem;
+}

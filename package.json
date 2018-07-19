@@ -5,13 +5,7 @@
     "ng": "ng",
     "develop": "npm-run-all --parallel start start:functions",
     "start": "ng serve",
-    "start:functions": "npm-run-all --parallel build:lambda:watch serve:functions",
-    "serve:functions": "netlify-lambda serve functions/dist",
-    "publish": "npm-run-all build:website build:lambda deploy:lambda",
     "build:website": "ng build --prod",
-    "build:lambda": "cd ./functions && tsc",
-    "build:lambda:watch": "cd ./functions && tsc --watch",
-    "deploy:lambda": "netlify-lambda build functions/dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

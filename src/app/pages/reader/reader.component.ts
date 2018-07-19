@@ -12,11 +12,17 @@ import { UpdateFeeds } from '../../actions/reader.actions';
 export class ReaderComponent implements OnInit {
 
   @Select(ReaderState.getFeeds) feeds$: Observable<any>;
+  @Select(ReaderState.getSources) sources$: Observable<any>;
 
   constructor(private store: Store) { }
 
   ngOnInit() {
-    this.store.dispatch(new UpdateFeeds());
+    this.sources$.subscribe((feeds) => {
+      this.store.dispatch(new UpdateFeeds(feeds[0].url));
+    });
   }
 
+  feedSelectHandler(source) {
+    this.store.dispatch(new UpdateFeeds(source.url));
+  }
 }

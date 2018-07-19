@@ -1,0 +1,7 @@
+<mat-list>
+    <button mat-button
+            *ngFor="let source of sources"
+            (click)="this.feedSelectEvent.emit(source)">
+        {{ source.name }}
+    </button>
+</mat-list>

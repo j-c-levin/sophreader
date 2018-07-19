@@ -9,16 +9,18 @@ import { NgxsModule } from '@ngxs/store';
 import { ReaderState } from './state/reader.state';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { MatExpansionModule } from '@angular/material';
+import { MatExpansionModule, MatListModule, MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedRetrieverService } from '@services/feed-retriever.service';
 import { HttpModule } from 'node_modules/@angular/http';
+import { SourceListComponent } from './components/source-list/source-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReaderComponent,
-    FeedListComponent
+    FeedListComponent,
+    SourceListComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,8 @@ import { HttpModule } from 'node_modules/@angular/http';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     MatExpansionModule,
+    MatListModule,
+    MatButtonModule,
     BrowserAnimationsModule,
     HttpModule
   ],
