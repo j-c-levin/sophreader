@@ -25,4 +25,8 @@ export class ReaderComponent implements OnInit {
   feedSelectHandler(source) {
     this.store.dispatch(new UpdateFeeds(source.url));
   }
+
+  newFeedHandler(source: string) {
+    console.log('got new feed url', source);
+  }
 }

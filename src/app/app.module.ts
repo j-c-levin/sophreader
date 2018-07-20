@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ReaderComponent } from './pages/reader/reader.component';
@@ -14,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedRetrieverService } from '@services/feed-retriever.service';
 import { HttpModule } from 'node_modules/@angular/http';
 import { SourceListComponent } from './components/source-list/source-list.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -33,8 +36,11 @@ import { SourceListComponent } from './components/source-list/source-list.compon
     MatExpansionModule,
     MatListModule,
     MatButtonModule,
+    MatInputModule,
     BrowserAnimationsModule,
-    HttpModule
+    MatIconModule,
+    HttpModule,
+    FormsModule
   ],
   providers: [FeedRetrieverService],
   bootstrap: [AppComponent]

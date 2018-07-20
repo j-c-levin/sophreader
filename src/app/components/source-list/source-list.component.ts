@@ -10,5 +10,7 @@ export class SourceListComponent {
 
   @Input() sources: any[];
   @Output() feedSelectEvent = new EventEmitter<any>();
+  @Output() newFeedEvent = new EventEmitter<string>();
+  newFeedUrl: string;
 
 }

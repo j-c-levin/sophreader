@@ -1,4 +1,18 @@
 <mat-list>
+    <mat-form-field>
+        <input matInput
+               type="text"
+               placeholder="Add new feed"
+               [(ngModel)]="newFeedUrl">
+        <button mat-button
+                *ngIf="newFeedUrl"
+                matSuffix
+                mat-icon-button
+                aria-label="send"
+                (click)="this.newFeedEvent.emit(newFeedUrl)">
+                <mat-icon>send</mat-icon>
+        </button>
+    </mat-form-field>
     <button mat-button
             *ngFor="let source of sources"
             (click)="this.feedSelectEvent.emit(source)">
