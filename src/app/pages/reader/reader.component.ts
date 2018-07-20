@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { ReaderState } from '../../state/reader.state';
-import { Observable } from '@node_modules/rxjs';
-import { UpdateFeeds } from '../../actions/reader.actions';
+import { ReaderState } from 'src/app/state/reader.state';
+import { Observable } from 'rxjs';
+import { UpdateFeeds, AddSource } from 'src/app/actions/reader.actions';
 
 @Component({
   selector: 'app-reader',
@@ -27,6 +27,6 @@ export class ReaderComponent implements OnInit {
   }
 
   newFeedHandler(source: string) {
-    console.log('got new feed url', source);
+    this.store.dispatch(new AddSource(source));
   }
 }

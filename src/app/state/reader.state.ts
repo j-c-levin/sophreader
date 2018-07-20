@@ -1,6 +1,6 @@
 import { State, Selector, Action, StateContext } from '@ngxs/store';
-import { UpdateFeeds, AddSource } from '../actions/reader.actions';
-import { FeedRetrieverService } from '../services/feed-retriever.service';
+import { UpdateFeeds, AddSource } from 'src/app/actions/reader.actions';
+import { FeedService } from '@services/feed.service';
 import { switchMap, tap } from 'rxjs/operators';
 
 export class ReaderStateModel {
@@ -34,7 +34,7 @@ export interface ISource {
     }
 })
 export class ReaderState {
-    constructor(private feedRetrieverService: FeedRetrieverService) { }
+    constructor(private feedRetrieverService: FeedService) { }
 
     @Selector()
     static getFeeds(state: ReaderStateModel): any[] {
