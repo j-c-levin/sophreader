@@ -6,7 +6,8 @@
                     {{feed.title}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <div [innerHTML]="feed.content"></div>
+            <a href="{{feed.link}}" target="_blank">Open Article</a>
+            <span [innerHTML]="feed.content"></span>
         </mat-expansion-panel>
     </mat-accordion>
 </div>

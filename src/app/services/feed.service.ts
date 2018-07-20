@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable } from '@node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { Http } from '@angular/http';
-import { switchMap, map, tap } from '@node_modules/rxjs/operators';
-import { CdkColumnDefBase } from '../../../node_modules/@angular/cdk/table';
+import { switchMap, map, tap } from 'rxjs/operators';
+import { CdkColumnDefBase } from '@angular/cdk/table';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FeedRetrieverService {
+export class FeedService {
 
   constructor(
     protected localStorage: LocalStorage,

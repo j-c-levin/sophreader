@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SourceListComponent } from './source-list.component';
+import { SourceListComponent } from 'src/app/components/source-list/source-list.component';
 
 describe('SourceListComponent', () => {
   let component: SourceListComponent;
