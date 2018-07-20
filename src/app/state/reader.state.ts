@@ -1,10 +1,11 @@
 import { State, Selector, Action, StateContext } from '@ngxs/store';
-import { UpdateFeeds, AddSource } from 'src/app/actions/reader.actions';
+import { UpdateFeeds, AddSource, UpdateSources } from 'src/app/actions/reader.actions';
 import { FeedService } from '@services/feed.service';
 import { switchMap, tap } from 'rxjs/operators';
+import { SourceService } from '@services/source.service';
 
 export class ReaderStateModel {
-    feeds: any[];
+    feeds: IFeed[];
     sources: ISource[];
 }
 
@@ -13,42 +14,38 @@ export interface ISource {
     url: string;
 }
 
+export interface IFeed {
+    title: string;
+    link: string;
+    content: string;
+}
+
 @State<ReaderStateModel>({
     name: 'Reader',
     defaults: {
         feeds: [],
-        sources: [
-            {
-                name: 'kotaku',
-                url: 'https://kotaku.com/rss'
-            },
-            {
-                name: 'tech rader',
-                url: 'https://techradar.com/rss'
-            },
-            {
-                name: 'bbc home',
-                url: 'http://feeds.bbci.co.uk/news/rss.xml'
-            }
-        ]
+        sources: []
     }
 })
 export class ReaderState {
-    constructor(private feedRetrieverService: FeedService) { }
+    constructor(
+        private feedService: FeedService,
+        private sourceService: SourceService
+    ) { }
 
     @Selector()
-    static getFeeds(state: ReaderStateModel): any[] {
+    static getFeeds(state: ReaderStateModel): IFeed[] {
         return state.feeds;
     }
 
     @Selector()
-    static getSources(state: ReaderStateModel): any[] {
+    static getSources(state: ReaderStateModel): ISource[] {
         return state.sources;
     }
 
     @Action(UpdateFeeds)
-    updateFeeds(ctx: StateContext<ReaderStateModel>, feed: any): void {
-        this.feedRetrieverService.getFeeds(feed.feedUrl)
+    updateFeeds(ctx: StateContext<ReaderStateModel>, source: UpdateFeeds): void {
+        this.feedService.getFeeds(source.feed.url)
             .pipe(
                 tap(feeds => {
                     const state = ctx.getState();
@@ -57,7 +54,7 @@ export class ReaderState {
                         feeds
                     });
                 }),
-                switchMap(() => this.feedRetrieverService.GetNewFeeds(feed.feedUrl))
+                switchMap(() => this.feedService.GetNewFeeds(source.feed.url))
             ).subscribe((feeds) => {
                 const state = ctx.getState();
                 ctx.setState({
@@ -67,13 +64,27 @@ export class ReaderState {
             });
     }
 
+    @Action(UpdateSources)
+    updateSource(ctx: StateContext<ReaderStateModel>) {
+        this.sourceService.getSources()
+            .subscribe((sources) => {
+                const state = ctx.getState();
+                ctx.setState({
+                    ...state,
+                    sources
+                });
+            });
+    }
+
     @Action(AddSource)
-    AddSource(ctx: StateContext<ReaderStateModel>, source: any) {
-        const state = ctx.getState();
-        state.sources.push({
-            name: source.name,
-            url: source.url
-        });
-        ctx.setState({ ...state });
+    addSource(ctx: StateContext<ReaderStateModel>, action: AddSource) {
+        this.sourceService.addSource(action.newFeed)
+            .subscribe((sources) => {
+                const state = ctx.getState();
+                ctx.setState({
+                    ...state,
+                    sources
+                });
+            });
     }
 }

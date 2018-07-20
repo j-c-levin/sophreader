@@ -17,6 +17,7 @@ import { HttpModule } from '@angular/http';
 import { SourceListComponent } from 'src/app/components/source-list/source-list.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { SourceService } from '@services/source.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,10 @@ import { MatIconModule } from '@angular/material/icon';
     HttpModule,
     FormsModule
   ],
-  providers: [FeedService],
+  providers: [
+    FeedService,
+    SourceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
