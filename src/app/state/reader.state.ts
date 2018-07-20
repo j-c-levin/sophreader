@@ -1,12 +1,18 @@
 import { State, Selector, Action, StateContext } from '@ngxs/store';
-import { UpdateFeeds } from '../actions/reader.actions';
+import { UpdateFeeds, AddSource } from '../actions/reader.actions';
 import { FeedRetrieverService } from '../services/feed-retriever.service';
 import { switchMap, tap } from 'rxjs/operators';
 
 export class ReaderStateModel {
     feeds: any[];
-    sources: any[];
+    sources: ISource[];
 }
+
+export interface ISource {
+    name: string;
+    url: string;
+}
+
 @State<ReaderStateModel>({
     name: 'Reader',
     defaults: {
@@ -56,8 +62,18 @@ export class ReaderState {
                 const state = ctx.getState();
                 ctx.setState({
                     ...state,
-                    feeds: feeds
+                    feeds
                 });
             });
+    }
+
+    @Action(AddSource)
+    AddSource(ctx: StateContext<ReaderStateModel>, source: any) {
+        const state = ctx.getState();
+        state.sources.push({
+            name: source.name,
+            url: source.url
+        });
+        ctx.setState({ ...state });
     }
 }
