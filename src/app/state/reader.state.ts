@@ -55,13 +55,15 @@ export class ReaderState {
         let state = ctx.getState();
         ctx.setState({
             ...state,
-            feeds: []
+            feeds: [],
+            feedsLoading: true
         });
         this.feedService.GetNewFeeds(source.feed.url).subscribe((feeds) => {
             state = ctx.getState();
             ctx.setState({
                 ...state,
-                feeds
+                feeds,
+                feedsLoading: false
             });
         });
     }
