@@ -4,11 +4,6 @@ import { FeedService } from '@services/feed.service';
 import { switchMap, tap } from 'rxjs/operators';
 import { SourceService } from '@services/source.service';
 
-export class ReaderStateModel {
-    feeds: IFeed[];
-    sources: ISource[];
-}
-
 export interface ISource {
     name: string;
     url: string;
@@ -20,11 +15,18 @@ export interface IFeed {
     content: string;
 }
 
+export class ReaderStateModel {
+    feeds: IFeed[];
+    sources: ISource[];
+    feedsLoading: boolean;
+}
+
 @State<ReaderStateModel>({
     name: 'Reader',
     defaults: {
         feeds: [],
-        sources: []
+        sources: [],
+        feedsLoading: true
     }
 })
 export class ReaderState {
@@ -43,25 +45,25 @@ export class ReaderState {
         return state.sources;
     }
 
+    @Selector()
+    static getFeedsLoading(state: ReaderStateModel): boolean {
+        return state.feedsLoading;
+    }
+
     @Action(UpdateFeeds)
     updateFeeds(ctx: StateContext<ReaderStateModel>, source: UpdateFeeds): void {
-        this.feedService.getFeeds(source.feed.url)
-            .pipe(
-                tap(feeds => {
-                    const state = ctx.getState();
-                    ctx.setState({
-                        ...state,
-                        feeds
-                    });
-                }),
-                switchMap(() => this.feedService.GetNewFeeds(source.feed.url))
-            ).subscribe((feeds) => {
-                const state = ctx.getState();
-                ctx.setState({
-                    ...state,
-                    feeds
-                });
+        let state = ctx.getState();
+        ctx.setState({
+            ...state,
+            feeds: []
+        });
+        this.feedService.GetNewFeeds(source.feed.url).subscribe((feeds) => {
+            state = ctx.getState();
+            ctx.setState({
+                ...state,
+                feeds
             });
+        });
     }
 
     @Action(UpdateSources)
