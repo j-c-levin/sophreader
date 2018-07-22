@@ -18,6 +18,7 @@ import { SourceListComponent } from 'src/app/components/source-list/source-list.
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { SourceService } from '@services/source.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SourceService } from '@services/source.service';
     BrowserAnimationsModule,
     MatIconModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     FeedService,

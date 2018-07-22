@@ -15,10 +15,6 @@ export class FeedService {
     private http: Http
   ) { }
 
-  getFeeds(feedUrl: string): Observable<any> {
-    return this.localStorage.getItem(feedUrl);
-  }
-
   GetNewFeeds(feedUrl: string): Observable<any> {
     const url = 'https://gl3jmhect5.execute-api.eu-west-1.amazonaws.com/latest';
     return this.http.get(url,
@@ -29,9 +25,7 @@ export class FeedService {
       }
     ).pipe(
       map(data => data.json()),
-      map(data => data.items),
-      switchMap(items => this.localStorage.setItem(feedUrl, items)),
-      switchMap(() => this.getFeeds(feedUrl))
+      map(data => data.items)
     );
   }
 }

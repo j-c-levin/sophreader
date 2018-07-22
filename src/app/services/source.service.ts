@@ -25,7 +25,6 @@ export class SourceService {
           if (sources === null) {
             sources = [];
           }
-          console.log(newSource);
           sources.push(newSource);
           return this.localStorage.setItem(this.sourcesKey, sources);
         }),

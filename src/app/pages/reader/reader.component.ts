@@ -15,6 +15,7 @@ export class ReaderComponent implements OnInit {
 
   @Select(ReaderState.getFeeds) feeds$: Observable<any>;
   @Select(ReaderState.getSources) sources$: Observable<any>;
+  @Select(ReaderState.getFeedsLoading) feedsLoading$: Observable<boolean>;
 
   constructor(private store: Store) { }
 

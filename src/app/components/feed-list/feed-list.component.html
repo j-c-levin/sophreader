@@ -6,8 +6,11 @@
                     {{feed.title}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <a href="{{feed.link}}" target="_blank">Open Article</a>
+            <a href="{{feed.link}}"
+               target="_blank">Open Article</a>
             <span [innerHTML]="feed.content"></span>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
+
+<mat-spinner id="loading-spinner" *ngIf="feedsLoading"></mat-spinner>

@@ -6,3 +6,7 @@ span {
     display: block;
     margin-top: 20px;
 }
+
+#loading-spinner {
+    margin: 50px 30%;
+}
