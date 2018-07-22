@@ -1,0 +1,27 @@
+<mat-list>
+    <mat-form-field>
+        <input matInput
+               type="text"
+               placeholder="Feed name"
+               [(ngModel)]="newFeed.name">
+    </mat-form-field>
+    <mat-form-field *ngIf="newFeed.name">
+        <input matInput
+               type="text"
+               placeholder="Feed url"
+               [(ngModel)]="newFeed.url">
+        <button mat-button
+                *ngIf="newFeed.url"
+                matSuffix
+                mat-icon-button
+                aria-label="send"
+                (click)="this.newFeedEvent.emit(newFeed)">
+            <mat-icon>send</mat-icon>
+        </button>
+    </mat-form-field>
+    <button mat-button
+            *ngFor="let source of sources"
+            (click)="this.feedSelectEvent.emit(source)">
+        {{ source.name }}
+    </button>
+</mat-list>
