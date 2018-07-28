@@ -19,6 +19,7 @@ export class ReaderStateModel {
     feeds: IFeed[];
     sources: ISource[];
     feedsLoading: boolean;
+    selectedSource: ISource;
 }
 
 @State<ReaderStateModel>({
@@ -26,7 +27,8 @@ export class ReaderStateModel {
     defaults: {
         feeds: [],
         sources: [],
-        feedsLoading: true
+        feedsLoading: true,
+        selectedSource: null
     }
 })
 export class ReaderState {
@@ -50,21 +52,31 @@ export class ReaderState {
         return state.feedsLoading;
     }
 
+    @Selector()
+    static getSelectedSource(state: ReaderStateModel): ISource {
+        return state.selectedSource;
+    }
+
     @Action(UpdateFeeds)
-    updateFeeds(ctx: StateContext<ReaderStateModel>, source: UpdateFeeds): void {
+    updateFeeds(ctx: StateContext<ReaderStateModel>, updateFeeds: UpdateFeeds): void {
         let state = ctx.getState();
+        // Set feeds loading to true and update the selected source
         ctx.setState({
             ...state,
             feeds: [],
-            feedsLoading: true
+            feedsLoading: true,
+            selectedSource: updateFeeds.source
         });
-        this.feedService.GetNewFeeds(source.feed.url).subscribe((feeds) => {
+        this.feedService.GetNewFeeds(updateFeeds.source.url).subscribe((feeds) => {
             state = ctx.getState();
-            ctx.setState({
-                ...state,
-                feeds,
-                feedsLoading: false
-            });
+            // Prevent loading feeds if source has changed
+            if (state.selectedSource === updateFeeds.source) {
+                ctx.setState({
+                    ...state,
+                    feeds,
+                    feedsLoading: false
+                });
+            }
         });
     }
 
