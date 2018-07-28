@@ -1,7 +1,7 @@
 import { ISource } from 'src/app/state/reader.state';
 export class UpdateFeeds {
     static readonly type = '[Feed] update feeds';
-    constructor(public feed: ISource) { }
+    constructor(public source: ISource) { }
 }
 
 export class UpdateSources {

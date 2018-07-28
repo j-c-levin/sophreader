@@ -1,10 +1,8 @@
+import { AddSource, UpdateFeeds, UpdateSources } from '@actions/reader.actions';
 import { Component, OnInit } from '@angular/core';
-import { Store, Select } from '@ngxs/store';
-import { ReaderState } from 'src/app/state/reader.state';
+import { Select, Store } from '@ngxs/store';
+import { ISource, IFeed, ReaderState } from '@state/reader.state';
 import { Observable } from 'rxjs';
-import { UpdateFeeds, AddSource } from 'src/app/actions/reader.actions';
-import { UpdateSources } from '../../actions/reader.actions';
-import { ISource } from '../../state/reader.state';
 
 @Component({
   selector: 'app-reader',
@@ -13,9 +11,10 @@ import { ISource } from '../../state/reader.state';
 })
 export class ReaderComponent implements OnInit {
 
-  @Select(ReaderState.getFeeds) feeds$: Observable<any>;
-  @Select(ReaderState.getSources) sources$: Observable<any>;
+  @Select(ReaderState.getFeeds) feeds$: Observable<IFeed[]>;
+  @Select(ReaderState.getSources) sources$: Observable<ISource[]>;
   @Select(ReaderState.getFeedsLoading) feedsLoading$: Observable<boolean>;
+  @Select(ReaderState.getSelectedSource) selectedSource$: Observable<ISource>;
 
   constructor(private store: Store) { }
 
