@@ -21,6 +21,7 @@
     </mat-form-field>
     <button mat-button
             *ngFor="let source of sources"
+            [ngStyle]="{ 'font-weight': isSelected(source)}"
             (click)="this.feedSelectEvent.emit(source)">
         {{ source.name }}
     </button>
