@@ -19,7 +19,9 @@
     "paths": {
       "@node_modules/*": ["node_modules/*"],
       "@services/*": ["src/app/services/*"],
-      "@environments/*": ["src/environments/*"]
+      "@environments/*": ["src/environments/*"],
+      "@state/*": ["src/app/state/*"],
+      "@actions/*": ["src/app/actions/*"]
     }
   }
 }

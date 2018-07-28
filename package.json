@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "develop": "npm-run-all --parallel start start:functions",
     "start": "ng serve",
     "deploy": "npm-run-all build functions:update",
     "build": "ng build --prod",

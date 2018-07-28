@@ -10,6 +10,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class FeedListComponent implements OnInit {
 
   @Input() feeds: any;
+  @Input() feedsLoading: boolean;
 
   constructor() { }
 

@@ -1,7 +1,9 @@
 <app-source-list id="source-list"
                  [sources]="sources$ | async"
+                 [selectedSource]="selectedSource$ | async"
                  (feedSelectEvent)="feedSelectHandler($event)"
                  (newFeedEvent)="newFeedHandler($event)"></app-source-list>
 
 <app-feed-list id="feed-list"
-               [feeds]="feeds$ | async"></app-feed-list>
+               [feeds]="feeds$ | async"
+               [feedsLoading]="feedsLoading$ | async"></app-feed-list>

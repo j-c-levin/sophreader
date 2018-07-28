@@ -18,13 +18,16 @@ import { SourceListComponent } from 'src/app/components/source-list/source-list.
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { SourceService } from '@services/source.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TitleWidthPipe } from './pipes/title-width.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReaderComponent,
     FeedListComponent,
-    SourceListComponent
+    SourceListComponent,
+    TitleWidthPipe
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { SourceService } from '@services/source.service';
     BrowserAnimationsModule,
     MatIconModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     FeedService,

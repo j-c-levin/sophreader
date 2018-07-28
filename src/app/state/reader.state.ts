@@ -4,11 +4,6 @@ import { FeedService } from '@services/feed.service';
 import { switchMap, tap } from 'rxjs/operators';
 import { SourceService } from '@services/source.service';
 
-export class ReaderStateModel {
-    feeds: IFeed[];
-    sources: ISource[];
-}
-
 export interface ISource {
     name: string;
     url: string;
@@ -20,11 +15,20 @@ export interface IFeed {
     content: string;
 }
 
+export class ReaderStateModel {
+    feeds: IFeed[];
+    sources: ISource[];
+    feedsLoading: boolean;
+    selectedSource: ISource;
+}
+
 @State<ReaderStateModel>({
     name: 'Reader',
     defaults: {
         feeds: [],
-        sources: []
+        sources: [],
+        feedsLoading: true,
+        selectedSource: null
     }
 })
 export class ReaderState {
@@ -43,25 +47,37 @@ export class ReaderState {
         return state.sources;
     }
 
+    @Selector()
+    static getFeedsLoading(state: ReaderStateModel): boolean {
+        return state.feedsLoading;
+    }
+
+    @Selector()
+    static getSelectedSource(state: ReaderStateModel): ISource {
+        return state.selectedSource;
+    }
+
     @Action(UpdateFeeds)
-    updateFeeds(ctx: StateContext<ReaderStateModel>, source: UpdateFeeds): void {
-        this.feedService.getFeeds(source.feed.url)
-            .pipe(
-                tap(feeds => {
-                    const state = ctx.getState();
-                    ctx.setState({
-                        ...state,
-                        feeds
-                    });
-                }),
-                switchMap(() => this.feedService.GetNewFeeds(source.feed.url))
-            ).subscribe((feeds) => {
-                const state = ctx.getState();
+    updateFeeds(ctx: StateContext<ReaderStateModel>, updateFeeds: UpdateFeeds): void {
+        let state = ctx.getState();
+        // Set feeds loading to true and update the selected source
+        ctx.setState({
+            ...state,
+            feeds: [],
+            feedsLoading: true,
+            selectedSource: updateFeeds.source
+        });
+        this.feedService.GetNewFeeds(updateFeeds.source.url).subscribe((feeds) => {
+            state = ctx.getState();
+            // Prevent loading feeds if source has changed
+            if (state.selectedSource === updateFeeds.source) {
                 ctx.setState({
                     ...state,
-                    feeds
+                    feeds,
+                    feedsLoading: false
                 });
-            });
+            }
+        });
     }
 
     @Action(UpdateSources)
