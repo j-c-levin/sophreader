@@ -23,6 +23,6 @@
             *ngFor="let source of sources"
             [ngStyle]="{ 'font-weight': isSelected(source)}"
             (click)="this.feedSelectEvent.emit(source)">
-        {{ source.name }}
+        <span class="source-name">{{ source.name }}</span>
     </button>
 </mat-list>
