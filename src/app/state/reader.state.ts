@@ -27,7 +27,7 @@ export class ReaderStateModel {
     defaults: {
         feeds: [],
         sources: [],
-        feedsLoading: true,
+        feedsLoading: false,
         selectedSource: null
     }
 })
