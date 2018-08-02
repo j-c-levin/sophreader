@@ -9,7 +9,7 @@
 :host {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: 20vw 75vw;
+    grid-template-columns: fit-content(150px) 75vw;
     grid-template-areas: 
     "sources feeds"
 }
